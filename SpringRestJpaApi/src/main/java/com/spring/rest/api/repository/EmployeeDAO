@@ -1,4 +1,4 @@
-package com.spring.rest.api.dao;
+package com.spring.rest.api.repository;
 
 import java.util.List;
 import java.util.Optional;
