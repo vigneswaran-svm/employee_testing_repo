@@ -69,5 +69,27 @@ public class EmployeeDAO implements EmployeeService{
 		employeeRepository.deleteById(empno);
 		return empno+" : The record was deleted .";
 	}
-	
+
+	public String updateEmployeebyCode(EmployeeEntity employeeEntity, int empno) {
+		// TODO Auto-generated method stub
+		
+		String status = "" ;
+		Optional<EmployeeEntity>  optionalEmployee=employeeRepository.findById(empno);
+		
+		if (optionalEmployee.isPresent()) {
+			System.out.println("date is present ..... " + optionalEmployee.get().getEmp_first_name());
+			employeeEntity.setEmp_No(empno);
+		    employeeRepository.save(employeeEntity);
+		    
+		    status=optionalEmployee.get().getEmp_No() +" : Employee updated sucessfully ....";
+		}
+		else {
+			throw new EmployeeNotFoundException(status);
+			//status=optionalEmployee.get().getEmp_No() +" : not exist in our DB ....";
+			
+		}
+		
+		return status ;
+	}
 }
+
